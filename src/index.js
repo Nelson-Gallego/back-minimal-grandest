@@ -6,6 +6,8 @@ const helmet = require('helmet')
 
 const app = express()
 
+app.use(express.json()).use(cors()).use(helmet()).use(compression()).use(morgan('dev'))
+
 app.get('/api', (req, res) => {
     res.json({
         msg: 'all good :)'
