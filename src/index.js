@@ -5,17 +5,17 @@ const compression = require('compression')
 const helmet = require('helmet')
 const path = require('path')
 
-// const m3u8ToMp4 = require("m3u8-to-mp4");
-// const converter = new m3u8ToMp4();
+const m3u8ToMp4 = require("m3u8-to-mp4");
+const converter = new m3u8ToMp4();
 
 const app = express()
 
 app.use(express.json()).use(cors()).use(helmet()).use(compression()).use(morgan('dev'))
 
-// converter
-// .setInputFile('https://phenixrts.com/video/grandest.corp/us-west%23us-west1-c.da8lUcVf.20221004.PSCk5VkF/vod.m3u8')
-// .setInputFile(__dirname)
-// .start()
+converter
+.setInputFile('https://phenixrts.com/video/grandest.corp/us-west%23us-west1-c.da8lUcVf.20221004.PSCk5VkF/vod.m3u8')
+.setInputFile('/home/ubuntu/bucket-test-grandest/test.mp4')
+.start()
 
 console.log(path.join(__dirname))
 
