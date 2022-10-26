@@ -12,13 +12,12 @@ const app = express()
 app.use(express.json()).use(cors()).use(helmet()).use(compression()).use(morgan('dev'))
 
 app.get('/api', async (req, res) => {
-    console.log(path.join(__dirname))
-    // await download({
-    //     quality: "best",
-    //     concurrency: 5,
-    //     outputFile: path.join(__dirname, 'videoo.mp4'),
-    //     streamUrl: "https://phenixrts.com/video/grandest.corp/southamerica-east%23sa-saopaulo-1-ad-1.fnvarOMH.20220921.PScd57Lw/vod.m3u8",
-    // });
+    await download({
+        quality: "best",
+        concurrency: 5,
+        outputFile: (path.join(__dirname, '../../../bucket-test-grandest')),
+        streamUrl: "https://phenixrts.com/video/grandest.corp/southamerica-east%23sa-saopaulo-1-ad-1.fnvarOMH.20220921.PScd57Lw/vod.m3u8",
+    });
 
     res.json({ msg: 'all good :)' })
 })
