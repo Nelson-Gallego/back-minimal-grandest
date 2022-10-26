@@ -7,6 +7,8 @@ const path = require('path')
 
 const download = require("node-hls-downloader").download;
 
+const { v4 } = require('uuid')
+
 const app = express()
 
 app.use(express.json()).use(cors()).use(helmet()).use(compression()).use(morgan('dev'))
@@ -15,7 +17,7 @@ app.get('/api', async (req, res) => {
     await download({
         quality: "best",
         concurrency: 5,
-        outputFile: (path.join(__dirname, '../../../bucket-test-grandest')),
+        outputFile: (path.join(__dirname, `../../../bucket-test-grandest/${v4()}/video.mp4`)),
         streamUrl: "https://phenixrts.com/video/grandest.corp/southamerica-east%23sa-saopaulo-1-ad-1.fnvarOMH.20220921.PScd57Lw/vod.m3u8",
     });
 
