@@ -1,10 +1,9 @@
 const fs = require('fs')
 const request = require('request')
 const path = require('path')
-
+const folder = 9999
 
 function download(url, isBinary) {	
-    
     return new Promise((resolve, reject) => {
         let requestSettings = {
             url: url,
