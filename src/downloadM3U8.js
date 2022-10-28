@@ -1,5 +1,6 @@
 const request = require('request')
 const fs = require('fs')
+const path = require('path')
 
 function download(url, isBinary) {
 	return new Promise((resolve, reject) => {
