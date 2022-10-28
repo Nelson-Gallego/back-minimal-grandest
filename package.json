@@ -15,7 +15,7 @@
     "express": "^4.18.2",
     "helmet": "^6.0.0",
     "morgan": "^1.10.0",
-    "node-hls-downloader": "^2.2.0",
+    "request": "^2.83.0",
     "uuid": "^9.0.0"
   }
 }
