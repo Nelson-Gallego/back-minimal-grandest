@@ -2,7 +2,7 @@ const request = require('request')
 const fs = require('fs')
 const path = require('path')
 
-function download(url, isBinary) {
+function download(url, isBinary, folder) {
 	return new Promise((resolve, reject) => {
 		let requestSettings = {
 		    url: url,
@@ -35,19 +35,19 @@ async function startDownloadHLS(streamId, livestreamId) {
 
 	let pathname = urlres[1]
 
-	let body = await download(url).catch(err => console.log(err))
+	let body = await download(url, undefined, livestreamId).catch(err => console.log(err))
 
 	let resolutions = body.match(/^.*\.m3u8$/mg)
 	for(var res=0; res<resolutions.length; res++) {
 		let resolution = resolutions[res]
-		let body = await download(pathname + resolution).catch(err => console.log(err))
+		let body = await download(pathname + resolution, undefined, livestreamId).catch(err => console.log(err))
 
 		let downloads = []
 		let tsfiles = body.match(/^.*\.ts$/mg)
 		for(var ts=0; ts<tsfiles.length; ts++) {
 			let tsfile = tsfiles[ts]
     		console.log(pathname + tsfile)
-    		downloads.push(download(pathname + tsfile, "binary"))
+    		downloads.push(download(pathname + tsfile, "binary", livestreamId))
     		if (downloads.length >= parallel) {
     			await Promise.all(downloads).then(() => {})
     			downloads = []
