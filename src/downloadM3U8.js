@@ -61,7 +61,7 @@ async function startDownloadHLS(streamId, livestreamId) {
 
         const tokenTemp = process.env.TOKEN_APP
 
-        await axios.put(`https://dev-api.grandest.tk/api/v1/livestreams/streamAvailable/${livestreamId}`, {
+        await axios.put(`https://prod-api.grandest.tk/api/v1/livestreams/streamAvailable/${livestreamId}`, {
             urlS3: `https://bucket-test-grandest.s3.amazonaws.com/${livestreamId}/vod.m3u8`
         }, {
             headers: {
