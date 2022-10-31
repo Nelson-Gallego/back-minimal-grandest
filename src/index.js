@@ -35,6 +35,6 @@ app.get('/api/:streamId/:livestreamId', async (req, res) => {
     res.status(200).json({ msg: 'Start download stream' })
 })
 
-app.listen(3000, () => {
-    console.log('server in port 3000')
+app.listen(4000, () => {
+    console.log('server in port 4000')
 })  
