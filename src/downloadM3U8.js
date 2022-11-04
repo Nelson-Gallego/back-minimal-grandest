@@ -34,6 +34,7 @@ let parallel = 5
 async function startDownloadHLS(streamId, livestreamId) {
 
     try {
+        console.time('Descarga')
         const time1 = DateTime.now()
 
         const urlStream = "https://phenixrts.com/video/grandest.corp/" + encodeURIComponent(streamId) + "/vod.m3u8"
@@ -65,7 +66,7 @@ async function startDownloadHLS(streamId, livestreamId) {
         }
 
         const tokenTemp = process.env.TOKEN_APP
-
+        console.timeEnd('Descarga')
         const time2 = DateTime.now()
 
         const timeTotalSegundos = (time2 - time1) / 1000
@@ -75,7 +76,7 @@ async function startDownloadHLS(streamId, livestreamId) {
         console.log('Tiempo en minutos', timeTotalMinutos)
         console.log({ streamId, livestreamId })
 
-        getFolderSize(path.join(__dirname, `../../../bucket-test-grandest/${folder}`), (err, size) => {
+        getFolderSize(path.join(__dirname, `../../../bucket-test-grandest/${livestreamId}`), (err, size) => {
             console.log(size + ' bytes');
             console.log((size / 1024 / 1024).toFixed(2) + ' MB');
         });
